@@ -4,6 +4,8 @@ import 'package:flutter_app_youtube/telas/EmAlta.dart';
 import 'package:flutter_app_youtube/telas/Inicio.dart';
 import 'package:flutter_app_youtube/telas/Inscricao.dart';
 
+import 'CustomSearchDelegate.dart';
+
 
 class Home extends StatefulWidget {
   @override
@@ -13,12 +15,12 @@ class Home extends StatefulWidget {
 class _HomeState extends State<Home> {
 
   int _indiceAtual = 0;
+  String _resultado = "";
 
   @override
   Widget build(BuildContext context) {
-
     List<Widget> telas = [
-      Inicio(),
+      Inicio(_resultado),
       EmAlta(),
       Inscricao(),
       Biblioteca()
@@ -36,32 +38,51 @@ class _HomeState extends State<Home> {
           height: 22,
         ),
         actions: <Widget>[
+
+          IconButton(
+            icon: Icon(Icons.search),
+            onPressed: () async {
+              String res = await showSearch(
+                  context: context, delegate: CustomSearchDelegate());
+              setState(() {
+                _resultado = res;
+              });
+              print("resultado: digitado " + res);
+            },
+          ),
+
+          /*
           IconButton(
             icon: Icon(Icons.videocam),
             onPressed: (){
               print("acao: videocam");
             },
           ),
-          IconButton(
-            icon: Icon(Icons.search),
-            onPressed: (){
-              print("acao: pesquisa");
-            },
-          ),
+
           IconButton(
             icon: Icon(Icons.account_circle),
             onPressed: (){
               print("acao: conta");
             },
           )
+          */
+
+
         ],
       ),
-      body: telas[_indiceAtual],
+      body: Container(
+        padding: EdgeInsets.all(16),
+        child: telas[_indiceAtual],
+      ),
       bottomNavigationBar: BottomNavigationBar(
           currentIndex: _indiceAtual,
-          onTap: (indice){
+          onTap: (indice) {
             setState(() {
               _indiceAtual = indice;
+
+              if(_indiceAtual == 0){
+                _resultado = "";
+              }
             });
           },
           type: BottomNavigationBarType.fixed,

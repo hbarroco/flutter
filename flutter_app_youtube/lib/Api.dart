@@ -3,14 +3,13 @@ import 'model/Video.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 
-const CHAVE_YOUTUBE_API = "ABC";
+const CHAVE_YOUTUBE_API = "BABC";
 const ID_CANAL = "UCNWAce82vsnMtX1VciCa42g";
 const URL_BASE = "https://www.googleapis.com/youtube/v3/";
 
-
 class Api {
 
-  pesquisar(String pesquisa) async {
+  Future<List<Video>> searchYoutube(String pesquisa) async {
 
     http.Response response = await http.get(
         URL_BASE + "search"
@@ -23,21 +22,18 @@ class Api {
             "&q=$pesquisa"
     );
 
-    if( response.statusCode == 200 ){
-
-
-      Map<String, dynamic> dadosJson = json.decode( response.body );
+    if (response.statusCode == 200) {
+      Map<String, dynamic> dadosJson = json.decode(response.body);
 
       List<Video> videos = dadosJson["items"].map<Video>(
-              (map){
+              (map) {
             return Video.fromJson(map);
             //return Video.converterJson(map);
           }
       ).toList();
 
-      for( var video in videos ){
-        print("resultado: " + video.titulo );
-      }
+      return videos;
+
       //print("Resultado: " + videos.toString() );
 
       /*
@@ -46,10 +42,9 @@ class Api {
       }*/
       //print("resultado: " + dadosJson["items"].toString() );
 
-    }else{
-
+    } else {
+      return null;
     }
-
   }
 
 }

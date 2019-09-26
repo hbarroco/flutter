@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'Home.dart';
 
-void main(){
+void main() {
   runApp(MaterialApp(
     home: Home(),
     debugShowCheckedModeBanner: false,

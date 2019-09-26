@@ -11,9 +11,9 @@ class _BibliotecaState extends State<Biblioteca> {
     return Container(
       child: Center(
         child: Text(
-            "Biblioteca",
+          "Biblioteca",
           style: TextStyle(
-            fontSize: 25
+              fontSize: 25
           ),
         ),
       ),
