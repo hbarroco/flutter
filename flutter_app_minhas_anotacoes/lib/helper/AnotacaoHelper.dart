@@ -1,7 +1,11 @@
+import 'package:flutter_app_minhas_anotacoes/model/Anotacao.dart';
 import 'package:sqflite/sqflite.dart';
 import 'package:path/path.dart';
 
+
 class AnotacaoHelper {
+
+  static final String nomeTabela = "anotacao";
 
   static final AnotacaoHelper _anotacaoHelper = AnotacaoHelper._internal();
   Database _db;
@@ -18,7 +22,8 @@ class AnotacaoHelper {
     if( _db != null ){
       return _db;
     }else{
-      return inicializarDB();
+      _db = await inicializarDB();
+      return _db;
     }
 
   }
@@ -32,7 +37,11 @@ class AnotacaoHelper {
 
     * */
 
-    String sql = "CREATE TABLE anotacao (id INTEGER PRIMARY KEY AUTOINCREMENT, titulo VARCHAR, descricao TEXT, data DATETIME)";
+    String sql = "CREATE TABLE $nomeTabela ("
+        "id INTEGER PRIMARY KEY AUTOINCREMENT, "
+        "titulo VARCHAR, "
+        "descricao TEXT, "
+        "data DATETIME)";
     await db.execute(sql);
 
   }
@@ -46,6 +55,47 @@ class AnotacaoHelper {
     return db;
 
   }
+
+  Future<int> salvarAnotacao(Anotacao anotacao) async {
+
+    var bancoDados = await db;
+    int resultado = await bancoDados.insert(nomeTabela, anotacao.toMap() );
+    return resultado;
+
+  }
+
+  recuperarAnotacoes() async {
+
+    var bancoDados = await db;
+    String sql = "SELECT * FROM $nomeTabela ORDER BY data DESC ";
+    List anotacoes = await bancoDados.rawQuery( sql );
+    return anotacoes;
+
+  }
+
+  Future<int> atualizarAnotacao(Anotacao anotacao) async {
+
+    var bancoDados = await db;
+    return await bancoDados.update(
+        nomeTabela,
+        anotacao.toMap(),
+        where: "id = ?",
+        whereArgs: [anotacao.id]
+    );
+
+  }
+
+  Future<int> removerAnotacao( int id ) async {
+
+    var bancoDados = await db;
+    return await bancoDados.delete(
+        nomeTabela,
+        where: "id = ?",
+        whereArgs: [id]
+    );
+
+  }
+
 
 }
 
