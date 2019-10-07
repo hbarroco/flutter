@@ -7,7 +7,7 @@ void main() {
     home: Home(),
     debugShowCheckedModeBanner: false,
     theme: ThemeData(
-        primaryColor: Color(0xff795548),
+        primaryColor: Color(0xffDA70D6),
         //accentColor: Colors.green
         scaffoldBackgroundColor: Color(0xfff5e9b9)
     ),

@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 
 import 'Bichos.dart';
 import 'Numeros.dart';
-import 'Vogais.dart';
 
 class Home extends StatefulWidget {
   @override
@@ -17,7 +16,7 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin{
   void initState() {
     super.initState();
     _tabController = TabController(
-        length: 3,
+        length: 2,
         vsync: this,
         initialIndex: 0
     );
@@ -34,7 +33,6 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin{
     return Scaffold(
       appBar: AppBar(
         title: Text("Aprenda Inglês"),
-        backgroundColor: Colors.brown,
         bottom: TabBar(
           indicatorWeight: 4,
           indicatorColor: Colors.white,
@@ -52,9 +50,6 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin{
             Tab(
               text: "Números",
             ),
-            Tab(
-              text: "Vogais",
-            )
           ],
         ),
       ),
@@ -62,8 +57,7 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin{
         controller: _tabController,
         children: <Widget>[
           Bichos(),
-          Numeros(),
-          Vogais()
+          Numeros()
         ],
       ),
     );
