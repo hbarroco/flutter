@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "453560297268",
+    "firebase_url": "https://whatsappflutter-8635c.firebaseio.com",
+    "project_id": "whatsappflutter-8635c",
+    "storage_bucket": "whatsappflutter-8635c.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:453560297268:android:423e271d97498da942a761",
+        "android_client_info": {
+          "package_name": "whatsapp.apps.htb.flutter_app_whatsapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "453560297268-0vrtei13ch2f6928mupp6ab4r3avkd9f.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC2n5JZHe5pca1IHyK6cm6AVdf1yW3vsew"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "453560297268-0vrtei13ch2f6928mupp6ab4r3avkd9f.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
