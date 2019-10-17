@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-//import 'package:image_picker/image_picker.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'dart:io';
@@ -22,10 +22,10 @@ class _ConfiguracoesState extends State<Configuracoes> {
     File imagemSelecionada;
     switch( origemImagem ){
       case "camera" :
-        //imagemSelecionada = await ImagePicker.pickImage(source: ImageSource.camera);
+        imagemSelecionada = await ImagePicker.pickImage(source: ImageSource.camera);
         break;
       case "galeria" :
-        //imagemSelecionada = await ImagePicker.pickImage(source: ImageSource.gallery);
+        imagemSelecionada = await ImagePicker.pickImage(source: ImageSource.gallery);
         break;
     }
 
