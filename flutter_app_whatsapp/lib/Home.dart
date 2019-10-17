@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter_app_whatsapp/telas/Configuracoes.dart';
 import 'Login.dart';
 import 'telas/AbaContatos.dart';
 import 'telas/AbaConversas.dart';
@@ -46,7 +47,7 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
 
     switch( itemEscolhido ){
       case "Configurações":
-        print("Configurações");
+        Navigator.pushNamed(context, "/configuracoes");
         break;
       case "Deslogar":
         _deslogarUsuario();
@@ -54,7 +55,6 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
 
     }
     //print("Item escolhido: " + itemEscolhido );
-
   }
 
   _deslogarUsuario() async {
