@@ -5,6 +5,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'dart:io';
 
+
 class Configuracoes extends StatefulWidget {
   @override
   _ConfiguracoesState createState() => _ConfiguracoesState();
