@@ -60,13 +60,13 @@ class _LoginState extends State<Login> {
         password: usuario.senha
     ).then((firebaseUser){
 
-      //Navigator.pushReplacementNamed(context, "/home");
-      Navigator.pushReplacement(
+      Navigator.pushReplacementNamed(context, "/home");
+      /*Navigator.pushReplacement(
           context,
           MaterialPageRoute(
               builder: (context) => Home()
           )
-      );
+      );*/
 
     }).catchError((error){
 
@@ -87,13 +87,13 @@ class _LoginState extends State<Login> {
 
     if( usuarioLogado != null ){
 
-      //Navigator.pushReplacementNamed(context, "/home");
-      Navigator.pushReplacement(
+      Navigator.pushReplacementNamed(context, "/home");
+      /*Navigator.pushReplacement(
           context,
           MaterialPageRoute(
               builder: (context) => Home()
           )
-      );
+      );*/
     }
 
   }

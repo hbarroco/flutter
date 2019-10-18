@@ -3,12 +3,14 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_app_whatsapp/model/Usuario.dart';
 
+
 class AbaContatos extends StatefulWidget {
   @override
   _AbaContatosState createState() => _AbaContatosState();
 }
 
 class _AbaContatosState extends State<AbaContatos> {
+
   String _idUsuarioLogado;
   String _emailUsuarioLogado;
 
@@ -16,12 +18,13 @@ class _AbaContatosState extends State<AbaContatos> {
     Firestore db = Firestore.instance;
 
     QuerySnapshot querySnapshot =
-        await db.collection("usuarios").getDocuments();
+    await db.collection("usuarios").getDocuments();
 
     List<Usuario> listaUsuarios = List();
     for (DocumentSnapshot item in querySnapshot.documents) {
+
       var dados = item.data;
-      if (dados["email"] == _emailUsuarioLogado) continue;
+      if( dados["email"] == _emailUsuarioLogado ) continue;
 
       Usuario usuario = Usuario();
       usuario.email = dados["email"];
@@ -35,10 +38,12 @@ class _AbaContatosState extends State<AbaContatos> {
   }
 
   _recuperarDadosUsuario() async {
+
     FirebaseAuth auth = FirebaseAuth.instance;
     FirebaseUser usuarioLogado = await auth.currentUser();
     _idUsuarioLogado = usuarioLogado.uid;
     _emailUsuarioLogado = usuarioLogado.email;
+
   }
 
   @override
@@ -69,10 +74,18 @@ class _AbaContatosState extends State<AbaContatos> {
             return ListView.builder(
                 itemCount: snapshot.data.length,
                 itemBuilder: (_, indice) {
+
                   List<Usuario> listaItens = snapshot.data;
                   Usuario usuario = listaItens[indice];
 
                   return ListTile(
+                    onTap: (){
+                      Navigator.pushNamed(
+                          context,
+                          "/mensagens",
+                          arguments: usuario
+                      );
+                    },
                     contentPadding: EdgeInsets.fromLTRB(16, 8, 16, 8),
                     leading: CircleAvatar(
                         maxRadius: 30,
@@ -83,7 +96,7 @@ class _AbaContatosState extends State<AbaContatos> {
                     title: Text(
                       usuario.nome,
                       style:
-                          TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
+                      TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
                     ),
                   );
                 });

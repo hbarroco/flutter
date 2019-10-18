@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app_whatsapp/telas/Configuracoes.dart';
+import 'package:flutter_app_whatsapp/telas/Mensagens.dart';
 
 import 'Cadastro.dart';
 import 'Home.dart';
@@ -7,8 +8,9 @@ import 'Login.dart';
 
 class RouteGenerator {
 
-  /*
   static Route<dynamic> generateRoute(RouteSettings settings){
+
+    final args = settings.arguments;
 
     switch( settings.name ){
       case "/" :
@@ -29,7 +31,11 @@ class RouteGenerator {
         );
       case "/configuracoes" :
         return MaterialPageRoute(
-            builder: (context) => Configuracoes()
+            builder: (_) => Configuracoes()
+        );
+      case "/mensagens" :
+        return MaterialPageRoute(
+            builder: (_) => Mensagens(args)
         );
       default:
         _erroRota();
@@ -49,5 +55,5 @@ class RouteGenerator {
         }
     );
   }
-*/
+
 }
