@@ -5,7 +5,6 @@ import 'Login.dart';
 import 'telas/AbaContatos.dart';
 import 'telas/AbaConversas.dart';
 
-
 class Home extends StatefulWidget {
   @override
   _HomeState createState() => _HomeState();
@@ -30,12 +29,23 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
 
   }
 
+  Future _verificarUsuarioLogado() async {
+
+    FirebaseAuth auth = FirebaseAuth.instance;
+
+    FirebaseUser usuarioLogado = await auth.currentUser();
+
+    if( usuarioLogado == null ){
+      Navigator.pushReplacementNamed(context, "/login");
+    }
+
+  }
+
   @override
   void initState() {
     super.initState();
-
+    _verificarUsuarioLogado();
     _recuperarDadosUsuario();
-
     _tabController = TabController(
         length: 2,
         vsync: this
@@ -55,6 +65,7 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
 
     }
     //print("Item escolhido: " + itemEscolhido );
+
   }
 
   _deslogarUsuario() async {
@@ -62,13 +73,7 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
     FirebaseAuth auth = FirebaseAuth.instance;
     await auth.signOut();
 
-    //Navigator.pushReplacementNamed(context, "/login");
-    Navigator.pushReplacement(
-        context,
-        MaterialPageRoute(
-            builder: (context) => Login()
-        )
-    );
+    Navigator.pushReplacementNamed(context, "/login");
 
   }
 
