@@ -282,6 +282,8 @@ class _HomeState extends State<Home> {
     _recuperarEnderecoParaLatLong();
   }
 
+
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
